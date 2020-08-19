@@ -1,15 +1,25 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: AWS CloudFormation Template EC2_Instancetance in an existing VPC.
+Parameters:
+  VpcId:
+    Type: String
+    Default: vpc-fced2c84
+    Description: VpcId of your existing Virtual Private Cloud (VPC)
+  SubnetId:
+    Type: String
+    Default: subnet-00f953beb0966e343
+    Description: SubnetId of an existing subnet in your Virtual Private Cloud (VPC)
 Resources:
   Ec2Instance:
     Type: 'AWS::EC2::Instance'
     Properties:
       InstanceType: t2.micro
-      ImageId: ami-0ebc1ac48dfd14136
+      ImageId: ami-03b279d0c6581537a
       NetworkInterfaces:
         - DeviceIndex: '0'
           AssociatePublicIpAddress: 'true'
           DeleteOnTermination: 'true'
+          SubnetId: !Ref SubnetId
       Tags:
         - Key: Name
           Value: test-instance-demo
