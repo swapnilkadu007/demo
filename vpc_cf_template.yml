@@ -1,114 +1,27 @@
 AWSTemplateFormatVersion: 2010-09-09
-Metadata:
-  'AWS::CloudFormation::Designer':
-    4add7e1e-7c53-4008-9835-d0d1f812c2b7:
-      size:
-        width: 140
-        height: 140
-      position:
-        x: 350
-        'y': 20
-      z: 0
-      embeds:
-        - e6789cdb-0601-4ba6-a794-5510e4a7b416
-    e6789cdb-0601-4ba6-a794-5510e4a7b416:
-      size:
-        width: 60
-        height: 60
-      position:
-        x: 404.284292714092
-        'y': 71.5606362351926
-      z: 1
-      parent: 4add7e1e-7c53-4008-9835-d0d1f812c2b7
-      embeds: []
-    eef85b83-118f-4f37-af1a-3fa74a9d0d30:
-      size:
-        width: 140
-        height: 140
-      position:
-        x: 160
-        'y': 40
-      z: 0
-      embeds: []
-    5a7a21d9-ecd6-47fa-9dd5-9ac6e5675f06:
-      size:
-        width: 140
-        height: 140
-      position:
-        x: 90
-        'y': 40
-      z: 0
-      embeds: []
-    d357c68c-3240-4ac2-8d9f-1fd81eadcca7:
-      size:
-        width: 60
-        height: 60
-      position:
-        x: -19.314532091345704
-        'y': 56.81361391319629
-      z: 0
-      embeds: []
-      iscontainedinside:
-        - 4add7e1e-7c53-4008-9835-d0d1f812c2b7
-    1e06cf3f-2e74-4a0e-8484-81d31a63f8c0:
-      size:
-        width: 140
-        height: 140
-      position:
-        x: 58.95584553095382
-        'y': 104.2688822353779
-      z: 0
+Description: AWS CloudFormation Template EC2_Instancetance in an existing VPC.
 Resources:
-  cfTestVpc:
-    Type: 'AWS::EC2::VPC'
-    Properties:
-      CidrBlock: 10.0.0.0/16
-    Metadata:
-      'AWS::CloudFormation::Designer':
-        id: 4add7e1e-7c53-4008-9835-d0d1f812c2b7
-  cfTestEc2:
+  Ec2Instance:
     Type: 'AWS::EC2::Instance'
     Properties:
-      ImageId: ami-0ebc1ac48dfd14136
       InstanceType: t2.micro
-    Metadata:
-      'AWS::CloudFormation::Designer':
-        id: e6789cdb-0601-4ba6-a794-5510e4a7b416
-  cfTestSubnet:
-    Type: 'AWS::EC2::Subnet'
-    Properties:
-      VpcId: !Ref cfTestVpc
-      CidrBlock: 10.0.2.0/24
-      MapPublicIpOnLaunch: true
-    Metadata:
-      'AWS::CloudFormation::Designer':
-        id: eef85b83-118f-4f37-af1a-3fa74a9d0d30
-  cfTestRt:
-    Type: 'AWS::EC2::RouteTable'
-    Properties:
-      VpcId: !Ref cfTestVpc
-    Metadata:
-      'AWS::CloudFormation::Designer':
-        id: 5a7a21d9-ecd6-47fa-9dd5-9ac6e5675f06
-  cfTestSg:
-    Type: 'AWS::EC2::SecurityGroup'
-    Properties:
-      GroupName: TestIG
-      VpcId: !Ref cfTestVpc
-      GroupDescription: Test
-      SecurityGroupIngress:
-        IpProtocol: -1
-        CidrIp: 0.0.0.0/0
-      SecurityGroupEgress:
-        IpProtocol: -1
-        CidrIp: 0.0.0.0/0
-    Metadata:
-      'AWS::CloudFormation::Designer':
-        id: d357c68c-3240-4ac2-8d9f-1fd81eadcca7
-  cfNacl:
-    Type: 'AWS::EC2::NetworkAcl'
-    Properties:
-      VpcId: !Ref cfTestVpc
-    Metadata:
-      'AWS::CloudFormation::Designer':
-        id: 1e06cf3f-2e74-4a0e-8484-81d31a63f8c0
+      ImageId: ami-0ebc1ac48dfd14136
+      NetworkInterfaces:
+        - DeviceIndex: '0'
+          AssociatePublicIpAddress: 'true'
+          DeleteOnTermination: 'true'
+      Tags:
+        - Key: Name
+          Value: test-instance-demo
+      UserData: !Base64 
+        'Fn::Sub': |
+          #!/bin/bash
+          yum update -y
+          yum install -y httpd
+          chkconfig httpd on
+          service httpd start
+          echo "Success!!!" > /var/www/html/index.html
+Outputs:
+  InstanceId:
+    Value: !Ref Ec2Instance
+    Description: Instance Id of newly created instance
