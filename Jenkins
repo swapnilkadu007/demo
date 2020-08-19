@@ -3,7 +3,7 @@ pipeline{
 		stages{
 				stage('Submit Stack'){
 					steps{
-					sh "sudo /usr/local/bin/aws cloudformation create-stack --stack-name ecinstancetest --template-body file://vpc_cf_template.yml --tags Key=Name,Value=testserver Key=costid,Value=123 --region 'us-west-2'"
+					sh "aws cloudformation create-stack --stack-name ecinstancetest --template-body file://vpc_cf_template.yml --tags Key=Name,Value=testserver Key=costid,Value=123 --region 'us-west-2'"
 					}
 				}
 		}
