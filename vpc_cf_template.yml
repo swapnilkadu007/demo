@@ -59,14 +59,14 @@ Metadata:
         'y': 104.2688822353779
       z: 0
 Resources:
-  cf_test_vpc:
+  cfTestVpc:
     Type: 'AWS::EC2::VPC'
     Properties:
       CidrBlock: 10.0.0.0/16
     Metadata:
       'AWS::CloudFormation::Designer':
         id: 4add7e1e-7c53-4008-9835-d0d1f812c2b7
-  cf_test_ec2:
+  cfTestEc2:
     Type: 'AWS::EC2::Instance'
     Properties:
       ImageId: ami-0ebc1ac48dfd14136
@@ -74,27 +74,27 @@ Resources:
     Metadata:
       'AWS::CloudFormation::Designer':
         id: e6789cdb-0601-4ba6-a794-5510e4a7b416
-  cf_test_subnet:
+  cfTestSubnet:
     Type: 'AWS::EC2::Subnet'
     Properties:
-      VpcId: !Ref cf_test_vpc
+      VpcId: !Ref cfTestVpc
       CidrBlock: 10.0.2.0/24
       MapPublicIpOnLaunch: true
     Metadata:
       'AWS::CloudFormation::Designer':
         id: eef85b83-118f-4f37-af1a-3fa74a9d0d30
-  cf_test_rt:
+  cfTestRt:
     Type: 'AWS::EC2::RouteTable'
     Properties:
-      VpcId: !Ref cf_test_vpc
+      VpcId: !Ref cfTestVpc
     Metadata:
       'AWS::CloudFormation::Designer':
         id: 5a7a21d9-ecd6-47fa-9dd5-9ac6e5675f06
-  cf_test_sg:
+  cfTestSg:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
       GroupName: TestIG
-      VpcId: !Ref cf_test_vpc
+      VpcId: !Ref cfTestVpc
       GroupDescription: Test
       SecurityGroupIngress:
         IpProtocol: -1
@@ -105,10 +105,10 @@ Resources:
     Metadata:
       'AWS::CloudFormation::Designer':
         id: d357c68c-3240-4ac2-8d9f-1fd81eadcca7
-  cf_test_nacl:
+  cfNacl:
     Type: 'AWS::EC2::NetworkAcl'
     Properties:
-      VpcId: !Ref cf_test_vpc
+      VpcId: !Ref cfTestVpc
     Metadata:
       'AWS::CloudFormation::Designer':
         id: 1e06cf3f-2e74-4a0e-8484-81d31a63f8c0
