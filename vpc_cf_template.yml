@@ -22,7 +22,7 @@ Resources:
           SubnetId: !Ref SubnetId
       Tags:
         - Key: Name
-          Value: test-instance-demo
+          Value: test-cp-demo-swapnil
       UserData: !Base64 
         'Fn::Sub': |
           #!/bin/bash
