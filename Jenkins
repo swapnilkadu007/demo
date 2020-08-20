@@ -3,10 +3,11 @@ pipeline{
 		stages{
 				stage('Submit Stack'){
 					steps{
-					sh "cd /var/jenkins_home/test_aws/bin/"
 					sh "pwd"
 					sh "ls -b"
-					sh "/var/jenkins_home/test_aws/bin/aws cloudformation create-stack --stack-name ecinstancetest --template-body file://cf_script.json --tags Key=Name,Value=testserver Key=costid,Value=123 --region 'us-west-2'"
+					sh "docker exec -it jenkins /bin/bash"
+					sh "export PATH=/var/jenkins_home/test_aws/bin/aws:$PATH"
+					sh "aws cloudformation create-stack --stack-name ecinstancetest --template-body file://cf_script.json --tags Key=Name,Value=testserver Key=costid,Value=123 --region 'us-west-2'"
 					}
 				}
 		}
