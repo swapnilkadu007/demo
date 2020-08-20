@@ -6,7 +6,7 @@ pipeline{
 					sh "cd /var/jenkins_home/test_aws/bin/"
 					sh "pwd"
 					sh "ls -b"
-					sh "aws cloudformation create-stack --stack-name ecinstancetest --template-body file://cf_script.json --tags Key=Name,Value=testserver Key=costid,Value=123 --region 'us-west-2'"
+					sh "/var/jenkins_home/test_aws/bin/aws cloudformation create-stack --stack-name ecinstancetest --template-body file://cf_script.json --tags Key=Name,Value=testserver Key=costid,Value=123 --region 'us-west-2'"
 					}
 				}
 		}
