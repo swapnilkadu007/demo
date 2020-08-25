@@ -2,8 +2,7 @@ pipeline{
 		agent any
 		stages{
 				stage('Submit Stack'){
-					steps{					
-					sh "pwd"					
+					steps{										
 					sh "aws cloudformation create-stack --stack-name ecinstancetwo --template-body file://cf_script.json --tags Key=Name,Value=testserver --region 'us-west-2'"
 					}
 				}
