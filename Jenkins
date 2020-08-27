@@ -1,10 +1,12 @@
-pipeline{
-		agent any
-		stages{
-				stage('Submit Stack'){
-					steps{										
-					sh "sudo aws cloudformation create-stack --stack-name tomcatapptdemo --template-body file://cf_script.json --tags Key=Name,Value=testserver --region 'us-west-2'"
-					}
-				}
-		}
+pipeline {
+    agent any
+    stages {
+        stage('Submit AWS') {
+            steps {
+                withAWS(credentials: 'aws-credentials', region: 'us-west-2') {
+                    sh "sudo aws cloudformation create-stack --stack-name tomcatapptdemo --template-body file://cf_script.json --tags Key=Name,Value=testserver --region 'us-west-2'"                    
+                }
+            }
+        }
+    }
 }
