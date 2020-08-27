@@ -3,7 +3,7 @@ pipeline{
 		stages{
 				stage('Submit Stack'){
 					steps{										
-					sh "aws cloudformation create-stack --stack-name ecinstancetwo --template-body file://cf_script.json --tags Key=Name,Value=testserver --region 'us-west-2'"
+					sh "aws cloudformation create-stack --stack-name tomcatappdemo --template-body file://ecinstance.yml --tags Key=Name,Value=testserver --region 'us-west-2'"
 					}
 				}
 		}
