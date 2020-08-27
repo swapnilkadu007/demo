@@ -18,7 +18,7 @@
             "Type": "AWS::EC2::Instance",
             "Properties": {
                 "InstanceType": "t2.micro",
-                "ImageId": "ami-03e05c89aa11dda83",
+                "ImageId": "ami-082b1629c857ae90c",
                 "NetworkInterfaces": [
                     {
                         "DeviceIndex": "0",
