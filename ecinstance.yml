@@ -31,6 +31,7 @@ Resources:
           chkconfig httpd on
           service httpd start
           echo "Success!!!" > /var/www/html/index.html
+          #tomcat installation
           curl -O https://downloads.apache.org/tomcat/tomcat-8/v8.5.57/bin/apache-tomcat-8.5.57.tar.gz
           tar xvfz apache*.tar.gz
           mv apache-tomcat-8.5.57/* /opt/tomcat/.
