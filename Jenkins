@@ -3,7 +3,7 @@ pipeline{
 		stages{
 				stage('Submit Stack'){
 					steps{										
-					sh "aws cloudformation create-stack --stack-name tomcatappdemo --template-body file://ecinstance.yml --tags Key=Name,Value=testserver --region 'us-west-2'"
+					sh "sudo aws cloudformation create-stack --stack-name tomcatapptdemo --template-body file://ecinstance.yml --tags Key=Name,Value=testserver --region 'us-west-2'"
 					}
 				}
 		}
