@@ -18,7 +18,7 @@
             "Type": "AWS::EC2::Instance",
             "Properties": {
                 "InstanceType": "t2.micro",
-                "ImageId": "ami-082b1629c857ae90c",
+                "ImageId": "ami-03e05c89aa11dda83",
                 "NetworkInterfaces": [
                     {
                         "DeviceIndex": "0",
@@ -32,12 +32,12 @@
                 "Tags": [
                     {
                         "Key": "Name",
-                        "Value": "test-cp-demo-swapnil"
+                        "Value": "test-tm-demo-swapnil"
                     }
                 ],
                 "UserData": {
                     "Fn::Base64": {
-                        "Fn::Sub": "#!/bin/bash\nyum update -y\nyum install -y httpd\nchkconfig httpd on\nservice httpd start\necho \"Success!!!\" > /var/www/html/index.html\n"
+                        "Fn::Sub": "#!/bin/bash\nyum update -y\nyum install -y httpd\nchkconfig httpd on\nservice httpd start\necho \"Success!!!\" > /var/www/html/index.html\n#tomcat installation\ncurl -O https://downloads.apache.org/tomcat/tomcat-8/v8.5.57/bin/apache-tomcat-8.5.57.tar.gz\ntar xvfz apache*.tar.gz\nmv apache-tomcat-8.5.57/* /opt/tomcat/.\napt install java\njava -version\n"
                     }
                 }
             }
