@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 
-Description: AWS CloudFormation Template EC2_Instancetance in an existing VPC.
+Description: AWS CloudFormation Template - Deploying test application on new test environment.
 
 Parameters:
 
