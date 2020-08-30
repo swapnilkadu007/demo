@@ -75,11 +75,8 @@ Resources:
         'Fn::Sub': |
 
           #!/bin/bash
-
           curl -uaakashtapdia@yahoo.co.in:AP8SZtFXeafHm8ekZwqa94T8nrC -O -L https://testjfrogcloud2020.jfrog.io/artifactory/libs-snapshot-local/com/wakaleo/gameoflife/gameoflife-web/1.0-SNAPSHOT/gameoflife-web-1.0-20200824.052730-1.war
-
           sudo cp gameoflife-web-1.0-20200824.052730-1.war /opt/tomcat/webapps/
-
           sudo systemctl start tomcat
 
            
