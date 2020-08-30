@@ -3,7 +3,7 @@ pipeline{
 		stages{
 				stage('Submit Stack'){
 					steps{										
-					sh "sudo aws cloudformation create-stack --stack-name FinalTestAppDeploy --template-body file://env_deploy_script.yml --tags Key=Name,Value=testEnvServer --region 'us-west-2'"
+					sh "sudo aws cloudformation create-stack --stack-name finalTestAppDeploy --template-body file://env_deploy_script.yml --tags Key=Name,Value=testEnvServer --region 'us-west-2'"
 					}
 				}
 		}
